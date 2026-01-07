@@ -18,6 +18,11 @@ export default function Symptoms() {
   const mapRef = useRef(null);
 const leafletMapRef = useRef(null);
 const markersRef = useRef([]);
+const routeMapRef = useRef(null);
+const routeLeafletMapRef = useRef(null);
+const routeLineRef = useRef(null);
+const [selectedDoctor, setSelectedDoctor] = useState(null);
+
 
 
   const recognitionRef = useRef(null);
@@ -161,6 +166,55 @@ useEffect(() => {
       });
     });
   }, [places, location]);
+
+useEffect(() => {
+  if (!routeMapRef.current) return;
+  if (routeLeafletMapRef.current) return;
+  if (!location) return;
+
+  const map = L.map(routeMapRef.current).setView(
+    [location.lat, location.lng],
+    13
+  );
+
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: "&copy; OpenStreetMap contributors",
+  }).addTo(map);
+
+  setTimeout(() => map.invalidateSize(), 200);
+
+  routeLeafletMapRef.current = map;
+}, [location, selectedDoctor]); // 👈 THIS IS CRITICAL
+
+
+
+useEffect(() => {
+  if (!selectedDoctor || !location || !routeLeafletMapRef.current) return;
+
+  const map = routeLeafletMapRef.current;
+
+  const drawRoute = async () => {
+    const url = `https://router.project-osrm.org/route/v1/driving/${location.lng},${location.lat};${selectedDoctor.lng},${selectedDoctor.lat}?overview=full&geometries=geojson`;
+
+    const res = await fetch(url);
+    const data = await res.json();
+
+    if (!data.routes?.length) return;
+
+    if (routeLineRef.current) {
+      map.removeLayer(routeLineRef.current);
+    }
+
+    routeLineRef.current = L.geoJSON(data.routes[0].geometry, {
+      style: { color: "#3b82f6", weight: 6 },
+    }).addTo(map);
+
+    map.fitBounds(routeLineRef.current.getBounds());
+  };
+
+  drawRoute();
+}, [selectedDoctor, location]);
+
 
 
 
@@ -353,6 +407,7 @@ useEffect(() => {
   {places.map((p, i) => (
     <div
       key={i}
+      onClick={() => setSelectedDoctor(p)}
       className="
         group
         relative
@@ -447,6 +502,21 @@ useEffect(() => {
 
     </div>
   </div>
+)}
+
+
+{selectedDoctor && location && (
+  <section className="bg-white px-10 pb-32">
+    <h2 className="mb-6 text-center text-4xl comfortaa-bold text-black">
+      Route to {selectedDoctor.name}
+    </h2>
+
+    <div
+      ref={routeMapRef}
+      className="w-full rounded-3xl shadow-2xl"
+      style={{ height: "500px" }}
+    />
+  </section>
 )}
 
 

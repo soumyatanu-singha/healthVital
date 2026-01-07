@@ -105,23 +105,27 @@ export default function Analyze() {
       </video>
 
       <div className="fixed inset-0 z-10 bg-white/1 backdrop-blur-sm"></div>
+{/* HOME BUTTON */}
+<div className="absolute top-6 right-6 z-20">
+  <Link href="/" className="block">
+    <button
+      type="button"
+      className="flex items-center gap-2 rounded-full bg-white px-4 py-2 shadow-md transition hover:shadow-lg hover:border hover:border-black"
+    >
+      <lord-icon
+        src="https://cdn.lordicon.com/shcfcebj.json"
+        trigger="hover"
+        stroke="light"
+        state="hover-jump"
+        colors="primary:#121331,secondary:#30e849"
+        style={{ width: "60px", height: "60px", pointerEvents: "none" }}
+      ></lord-icon>
 
-      {/* HOME BUTTON */}
-      <div className="absolute top-6 right-6 z-20">
-        <Link href="/">
-          <button className="flex items-center gap-2 rounded-full hover:border-black hover:border bg-white px-4 py-2 shadow-md transition hover:shadow-lg">
-            <lord-icon
-              src="https://cdn.lordicon.com/shcfcebj.json"
-              trigger="hover"
-              stroke="light"
-              state="hover-jump"
-              colors="primary:#121331,secondary:#30e849"
-              style={{ width: "60px", height: "60px" }}
-            ></lord-icon>
-            <span className="font-medium text-black">Home</span>
-          </button>
-        </Link>
-      </div>
+      <span className="font-medium text-black">Home</span>
+    </button>
+  </Link>
+</div>
+
 
       <div className="relative flex flex-col justify-around z-20">
         <div
