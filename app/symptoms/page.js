@@ -30,7 +30,7 @@ const [selectedDoctor, setSelectedDoctor] = useState(null);
   
 
 
-  /* Speech recognition */
+  //here i added speech recognition feature , useful for verbal prompt
   useEffect(() => {
     const SpeechRecognition =
       window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -61,7 +61,7 @@ const [selectedDoctor, setSelectedDoctor] = useState(null);
       : recognitionRef.current.start();
   };
 
-  /* Get user location */
+  
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       (pos) =>
@@ -76,7 +76,7 @@ const [selectedDoctor, setSelectedDoctor] = useState(null);
     );
   }, []);
 
-  /* Submit symptoms */
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!symptomText || !location) return;
@@ -128,18 +128,18 @@ const [selectedDoctor, setSelectedDoctor] = useState(null);
     leafletMapRef.current = map;
   });
 
- // Add places here so it re-checks when data arrives
+ 
 
 useEffect(() => {
   const map = leafletMapRef.current;
   if (!map) return;
 
   import("leaflet").then((L) => {
-    // Remove old markers
+
     markersRef.current.forEach((m) => m.remove());
     markersRef.current = [];
 
-    // User marker
+   
     if (location) {
       const userMarker = L.marker([location.lat, location.lng])
         .addTo(map)
@@ -147,8 +147,7 @@ useEffect(() => {
       markersRef.current.push(userMarker);
     }
 
-    // Doctor markers
-    // Doctor markers
+    
     places.forEach((p) => {
         if (p.lat && p.lng) {
           const popupContent = `
@@ -184,7 +183,7 @@ useEffect(() => {
   setTimeout(() => map.invalidateSize(), 200);
 
   routeLeafletMapRef.current = map;
-}, [location, selectedDoctor]); // 👈 THIS IS CRITICAL
+}, [location, selectedDoctor]); 
 
 
 
@@ -220,9 +219,9 @@ useEffect(() => {
 
   return (
     <>
-      {/* ================= HERO SECTION (UNCHANGED UI) ================= */}
+     
       <section className="relative comfortaa-bold flex items-center justify-center bg-green-300 py-32">
-        {/* HOME BUTTON */}
+       
         <div className="absolute top-6 right-6 z-20">
           <Link href="/">
             <button className="flex items-center gap-2 rounded-full hover:border-black hover:border bg-white px-4 py-2 shadow-md transition hover:shadow-lg">
@@ -240,7 +239,7 @@ useEffect(() => {
         </div>
 
         <div className="relative grid w-4/5 grid-cols-1 items-center gap-16 md:grid-cols-2">
-          {/* LEFT SIDE */}
+         
           <div className="relative">
             <div className="h-145 w-115 rounded-3xl bg-green-500"></div>
 
@@ -260,14 +259,14 @@ useEffect(() => {
             </div>
           </div>
 
-          {/* RIGHT SIDE */}
+          
           <div className="space-y-6">
             <h2 className="text-5xl font-bold text-black">
               AI that cares for you
             </h2>
 
             <p className="text-lg text-gray-700">
-              Tell us how you’re feeling. Our AI will guide you to the right
+              Tell us how you're feeling. Our AI will guide you to the right
               specialist based on your symptoms and location.
             </p>
 
@@ -288,7 +287,7 @@ useEffect(() => {
 
              
               <div className="flex justify-around">
-                 {/* VOICE */}
+                 
               <button
   type="button"
   onClick={startListening}
@@ -307,7 +306,7 @@ useEffect(() => {
 </button>
 
 
-              {/* SUBMIT */}
+             
               <button
                 type="submit"
                 className="block w-fit rounded-lg hover:border hover:bg-linear-to-l from-green-500 to-teal-300 hover:border-black bg-green-500 px-6 py-3 font-semibold text-black transition-all border-black hover:bg-green-300 hover:text-black hover:shadow-md"
@@ -321,7 +320,7 @@ useEffect(() => {
         </div>
       </section>
 
-      {/* ================= RESULTS ================= */}
+     
       {(loading || specialist || error) && (
         <section className="bg-green-300 px-10 comfortaa-bold pb-32">
           <div className="mx-auto max-w-4xl space-y-6">
@@ -348,7 +347,7 @@ useEffect(() => {
     
    
 
-    {/* main card */}
+    
     <div className="
       relative
       rounded-xl
@@ -377,7 +376,7 @@ useEffect(() => {
         </section>
       )}
 
-      {/* ================= MAP ================= */}
+      
    {places.length > 0 && location && (
   <section className="bg-white flex  px-10 pb-32">
     <div className="mx-auto  max-w-6xl">
@@ -401,8 +400,7 @@ useEffect(() => {
 
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        
-        {/* LEFT COLUMN — DOCTOR LIST */}
+      
         <div className="space-y-6 bg-linear-to-b from-green-500 to-teal-300 max-h-150 overflow-y-auto p-3 rounded-2xl shadow-inner">
   {places.map((p, i) => (
     <div
@@ -421,7 +419,7 @@ useEffect(() => {
         hover:shadow-[0_18px_45px_rgba(34,197,104,0.95)]
       "
     >
-      {/* Accent strip */}
+    
       <div className="absolute left-0 top-0 h-full w-1 rounded-l-2xl bg-black"></div>
 
       <h3 className="text-lg font-semibold text-black tracking-tight">
@@ -465,7 +463,7 @@ useEffect(() => {
   ))}
 </div>
 
-        {/* RIGHT COLUMN — MAP */}
+        
         <div
           ref={mapRef}
           className="rounded-2xl  shadow-xl"
@@ -480,18 +478,18 @@ useEffect(() => {
 
 
 
-{/* ================= VOICE LISTENING MODAL ================= */}
+
 {listening && (
   <div className="fixed inset-0 z-9999 flex items-center justify-center bg-black/10 backdrop-blur-md">
     <div className="relative flex h-48 w-48 items-center justify-center">
       
-      {/* Outer pulse */}
+      
       <div className="absolute h-full w-full animate-ping rounded-full bg-green-300"></div>
 
-      {/* Middle glow */}
+      
       <div className="absolute h-36  w-36 animate-pulse rounded-full bg-green-600 blur-xl"></div>
 
-      {/* Center mic */}
+      
       <div className="relative flex border border-black h-24 w-24 items-center justify-center rounded-full bg-green-400 shadow-[0_0_40px_rgba(34,197,94,2.0)]">
         <img
           src="/mic.svg"
