@@ -9,13 +9,13 @@ export default function Analyze() {
   const [result, setResult] = useState("");
   const [error, setError] = useState("");
 
-  /* ===================== ADDED CHAT STATES ===================== */
+  
   const [chatInput, setChatInput] = useState("");
   const [chatMessages, setChatMessages] = useState([]);
   const [chatLoading, setChatLoading] = useState(false);
   const [chatOpen, setChatOpen] = useState(true);
 
-  /* ============================================================= */
+  
 
   const handleFileChange = async (e) => {
     const selected = e.target.files[0];
@@ -25,7 +25,7 @@ export default function Analyze() {
     setAnalyzing(true);
     setResult("");
     setError("");
-    setChatMessages([]); // reset chat on new document
+    setChatMessages([]); 
 
     try {
       const formData = new FormData();
@@ -51,7 +51,7 @@ export default function Analyze() {
     }
   };
 
-  /* ===================== ADDED CHAT HANDLER ===================== */
+  
   const sendChat = async () => {
   if (!chatInput.trim()) return;
 
@@ -93,7 +93,7 @@ export default function Analyze() {
 
   return (
     <section className="relative flex min-h-screen items-center justify-center bg-white px-6">
-      {/* BACKGROUND VIDEO */}
+     
       <video
         autoPlay
         muted
@@ -105,7 +105,7 @@ export default function Analyze() {
       </video>
 
       <div className="fixed inset-0 z-10 bg-white/1 backdrop-blur-sm"></div>
-{/* HOME BUTTON */}
+
 <div className="absolute top-6 right-6 z-20">
   <Link href="/" className="block">
     <button
@@ -191,7 +191,7 @@ export default function Analyze() {
           )}
         </div>
 
-        {/* AI RESULT */}
+        
 
         
         {result && !analyzing && (
@@ -206,7 +206,7 @@ export default function Analyze() {
           </div>
         )}
 
-        {/* ===================== ADDED CHAT UI ===================== */}
+       
     {result && !analyzing && chatOpen && (
 
   <div
@@ -222,7 +222,7 @@ export default function Analyze() {
       shadow-[0_-10px_40px_rgba(0,0,0,0.15)]
     "
   >
-    {/* INNER CONTAINER */}
+    
     <div className="mx-auto max-w-6xl px-4 py-7">
 
 
@@ -232,7 +232,7 @@ export default function Analyze() {
 
      
 
-      {/* CHAT MESSAGES */}
+    
       <div className="mb-4 max-h-48 space-y-3 overflow-y-auto pr-2">
 
         {chatMessages.map((m, i) => (
@@ -249,7 +249,7 @@ export default function Analyze() {
         ))}
       </div>
 
-      {/* INPUT BAR */}
+     
       <div className="flex items-center gap-3">
         <input
           value={chatInput}
@@ -342,8 +342,6 @@ export default function Analyze() {
 )}
 
 
-
-        {/* ========================================================= */}
       </div>
     </section>
   );

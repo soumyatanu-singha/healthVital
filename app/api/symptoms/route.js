@@ -4,7 +4,7 @@ export const runtime = "nodejs";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-/* -------- HELPER: FETCH REAL DOCTORS (GEOAPIFY) -------- */
+
 async function fetchNearbyDoctors(lat, lng) {
   const apiKey = process.env.GEOAPIFY_API_KEY;
 
@@ -36,7 +36,6 @@ async function fetchNearbyDoctors(lat, lng) {
 }
 
 
-/* -------- API ROUTE -------- */
 export async function POST(req) {
   try {
     const body = await req.json();
@@ -49,7 +48,6 @@ export async function POST(req) {
       );
     }
 
-    /* -------- STEP 1: GEMINI → SPECIALIST -------- */
     const model = genAI.getGenerativeModel({
   model: "gemini-2.5-flash",
 });
@@ -81,7 +79,6 @@ Based on the symptoms below:
 
     const aiData = JSON.parse(match[0]);
 
-    /* -------- STEP 2: REAL DOCTORS (GEOAPIFY) -------- */
     const places = await fetchNearbyDoctors(
       location.lat,
       location.lng

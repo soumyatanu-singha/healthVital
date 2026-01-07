@@ -6,7 +6,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 export async function POST(req) {
   try {
-    // This correctly parses the JSON sent by the "Ask" button
+    
     const { explanation, question } = await req.json();
 
     const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });

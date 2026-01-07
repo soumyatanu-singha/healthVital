@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white text-black">
 
-      {/* NAVBAR */}
+      
       <nav className="absolute top-6 left-1/2 z-10 w-[90%] -translate-x-1/2 rounded-xl bg-white/10 backdrop-blur-sm border-2 border-black transition-all duration-300
   hover:shadow-[0_0_60px_rgba(255,255,255,0.70)]">
 
@@ -22,7 +22,7 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* TOP SECTION */}
+      
       <section className="relative h-full w-full">
         <video
           className="h-full w-full object-cover"
@@ -46,7 +46,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* BOTTOM SECTION */}
+      
       <section className="flex h-[50vh] items-center  justify-center bg-white">
         <div className="grid w-4/5 grid-cols-1 gap-6 md:grid-cols-3">
           
@@ -107,16 +107,16 @@ export default function Home() {
 
 
 
-      {/* INSPO SECTION */}
+    
 <section className="relative flex items-center justify-center comfortaa-bold bg-white py-32">
   <div className="relative grid w-4/5 grid-cols-1 items-center gap-16 md:grid-cols-2">
 
-    {/* LEFT SIDE (GREEN BOX + VIDEO) */}
+   
     <div className="relative">
-      {/* Green background box */}
+      
       <div className="h-150 w-120 rounded-3xl  bg-green-300"></div>
 
-      {/* Overlapping video */}
+   
       <div className="absolute -top-12 -left-12 h-145 w-110 overflow-hidden rounded-3xl shadow-black shadow-2xl ">
         <video
           className="h-full  w-full object-cover"
@@ -130,7 +130,7 @@ export default function Home() {
       </div>
     </div>
 
-    {/* RIGHT SIDE (TEXT CONTENT) */}
+   
     <div className="space-y-6">
       <h2 className="text-5xl font-bold text-black">
         AI that cares for you 
@@ -154,17 +154,16 @@ export default function Home() {
   </div>
 </section>
 
-{/* IMAGE FEATURE SECTION */}
-{/* IMAGE FEATURE SECTION — REDESIGNED */}
+
 <section className="relative comfortaa-bold bg-white py-32">
   <div className="mx-auto w-4/5 space-y-24">
 
-    {/* FEATURE 1 */}
+   
     <div className="grid grid-cols-1 items-center gap-16 md:grid-cols-2">
       
-      {/* IMAGE */}
+      
       <div className="relative">
-        <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-green-300 to-green-500 blur-2xl opacity-40"></div>
+        <div className="absolute inset-0 rounded-3xl bg-linear-to-br from-green-300 to-green-500 blur-2xl opacity-40"></div>
 
         <div className="relative overflow-hidden rounded-3xl shadow-[0_30px_80px_rgba(0,0,0,0.35)]">
           <img
@@ -175,7 +174,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* TEXT */}
+      
       <div className="space-y-6">
         <h3 className="text-5xl font-bold text-black">
           Trusted medical guidance
@@ -204,10 +203,9 @@ export default function Home() {
       </div>
     </div>
 
-    {/* FEATURE 2 */}
+    
     <div className="grid grid-cols-1 items-center gap-16 md:grid-cols-2">
 
-      {/* TEXT */}
       <div className="space-y-6 order-2 md:order-1">
         <h3 className="text-5xl font-bold text-black">
           Care near your location
@@ -236,9 +234,9 @@ export default function Home() {
         </Link>
       </div>
 
-      {/* IMAGE */}
+      
       <div className="relative order-1 md:order-2">
-        <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-green-300 to-green-500 blur-2xl opacity-40"></div>
+        <div className="absolute inset-0 rounded-3xl bg-linear-to-br from-green-300 to-green-500 blur-2xl opacity-40"></div>
 
         <div className="relative overflow-hidden rounded-3xl shadow-[0_30px_80px_rgba(0,0,0,0.35)]">
           <img
@@ -256,7 +254,6 @@ export default function Home() {
 
 
 
-      {/* FOOTER */}
       <footer className="bg-green-500 py-10 text-center text-white">
         <div className="mb-2 flex justify-center gap-12 font-medium">
           <a href="#" className="hover:underline">Privacy</a>
